@@ -1,4 +1,8 @@
-# Security Layering
+# Security
+
+The embedded layer and the backend layer support the security architecture.
+
+The Security architetcure is designed to allow many different security approahces to be easily bolted on.
 
 ## Layers / RINGS
 
