@@ -1,56 +1,42 @@
+# embed
 
+Embedder code written in golang.
 
-The project is designed in 3 high level layers.
-
-1. Business GUI
-
-- This is the applied Vertical domain for which the architecture is applied.
-
-- It uses IOC in order to use the Flutter components from the Embed layer
-
-2. Embed
-
-- This is reusable Flutter and Golang code that is client side.
-
-- The embed repo is the golang that sits embedded behind the Flutter code. 
-
-	- It does:
-
-		- Security
-
-		- Storage
-
-		- Networking
-
-- The packages repo is the Flutter
-
-	- It does:
-
-		- Gsuite style functionality.
-
-		- i18n embedded via Flutter 
-
-3. Backend
-
-This is the reusable Golang backend that supports the Embed layer.
-
-
-
-This is our Best Practice Architecture that meets our goals.
-
-Packages ( See repo ) use embed and the Architecture is provides.
-
-Harness ( this repo - see Folder) is our Best practice app to show how it works and refine it.
-
-Code written in golang with Flutter.
+Used for all services provided to clients.
 
 Why ?
 
-- Flutter is great at GUI. (MANY Foreground)
-- Golang is great at networking. (Singleton Background)
+- Flutter is great at GUI. Foreground App
+- Golang is great at networking. Background Service
+
+## Architecture:
+
+! Use the 15 minute poller Flutter Technique., not a background app.
 
 
-## Run as a Background Service
+- Foreground runs the Flutter Apps
+- Background singleton service runs the golang code for all networking.
+- IPC options
+	- GRPC based IO between them OS IPC mechanism.
+		- Desktop will be easy
+  		- Mobile not so easy
+		- Protocol buffers not GRPC
+
+  	- Or GRPC uses a GRPC socket and so we do not have to get into the weeds of IPC.
+    	- Often used approach
+    	- Will be much secure if we use a Cert between Foreground and Background. Can be bootstrapped from the Server on startup.
+
+
+Golang compilers:
+
+- Web:  Golang cross compiled using TinyGO ( https://github.com/tinygo-org/tinygo ) to WASM using the Web Worker, which is basically a PUB SUB channel.
+
+- Desktop: Golang running as a Desktop Service Or System Tray
+
+- Mobile: Golang cross compiled using GoMobile ( https://github.com/golang/mobile ) , and running as a Background Service.
+
+
+## Rationale
 
 We are moving to a Foreground and Background process model and so embedding is not needed.
 
@@ -97,28 +83,14 @@ Why ?
 	- Others can build Apps in any languages they want.
 
 
-## Architecture:
-
-- Foreground runs the Flutter Apps
-- Background singleton service runs the golang code for all networking.
-- IPC options
-
-	- GRPC based IO between them OS IPC mechanism.
-		- Desktop will be easy
-  		- Mobile not so easy
-		- Protocol buffers not GRPC
-
-  	- Or GRPC uses a GRPC socket and so we do not have to get into the weeds of IPC.
-    	- Often used approach
-    	- Will be much secure if we use a Cert between Foreground and Background. Can be bootstrapped from the Server on startup.
 
 
-## Dev aspects
+## Flutter Dev aspects
 
 
 - The background process is best thought of as a PUB SUB topic based Network.
 
-- You are essentially working at the Domain Model layer and so your models do not have to match one to one to the PUB SUB topics.
+- At Flutter GUI are essentially working at the Domain Model layer and so your models do not have to match one to one to the PUB SUB topics.
 
 - You can remap them how you want. Its gives the Flutter app the ability to compose their Domain Models to not be a one for one match as the PUB SUB topics in the network.
 
