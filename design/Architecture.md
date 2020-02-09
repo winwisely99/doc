@@ -1,6 +1,38 @@
 # Architecture
 
 
+
+
+
+## Frontend
+
+GUI Template is a Flutter generic app that uses our packages and tooling.
+ - The intent is to have an easy boot strap experience to build the Logic and GUI that reuses the GSUITE style system.
+
+Webrtc ( aka Google Meet) using Google Flutter embedder. 
+- Because it uses a different embedder this runs in its own app.
+- Opened from the Main App via a UniLink
+- This allows a user to do voice and video comms whilst working on App. Background running will be a challenge - lets see.
+
+All other modules ( aka GSuite ) use Go-fluter embedder.
+
+
+
+## Backend
+
+Webrtc uses Ion for Video Conf and chat.
+
+All other Modules use go.micro which supports RPC and PUB SUB.
+
+Single sign on uses ORY Hydra: https://github.com/ory/hydra 
+
+- Integrate FIDO2 and WebAuthn.
+
+## Infra
+
+Kubernetes baaed for everything.
+
+
 ## Intent
 
 A Collaboration system that can run *stand alone* but also *integrated* into an existing app.
@@ -24,7 +56,7 @@ Integrated:
 
 Physical.
 
-Servers can be anywhere. At Home on a Rasp Pi. 
+Servers can be anywhere. At Home on a Rasp Pi.
 
 Of course a Infra layer is needed to help expose these at home servers and keep them safe etc.
 
@@ -32,13 +64,13 @@ Of course a Infra layer is needed to help expose these at home servers and keep 
 
 Privacy.
 
-Does not allow User to leak everywhere. 
+Does not allow User to leak everywhere.
 
 For example Cal and Contacts work so Users dont have to use the build in OS Contacts from Google and Apple !! Etc etc. 
 
 ---
 
-Maybe some things i am missing here ... 
+Obviously there is more to this but this is a good rundown.
 
 
 ## Project Layering
@@ -48,7 +80,7 @@ Lets use these names for it.
 
 1. Business Layer ( GUI and Micro Services )
 
-In our case this is the Climate Change Compainging app.
+In our case this is the Climate Change Compigning app.
 
 Its has a GUI and a Domain model.
 
@@ -112,15 +144,12 @@ We had to do this to get Video and Multimedia working.
 	- Daryl has a Vagrant based project that can build anywhere. 
 	- Out put of builds to Fish for all binaries used upstream.
 
-	- Make.
-
-		- Mage is really strong here. Joe. Add libs and links to Bootstrap.
+	- Make: Use Mage and see the Bootstrap repo.
 
 - GUI
-
 	- Need good best practice structure so we dont get a mess.
 		- IOC. Joe add the Link !
-		- Flutter Best Practice Layout that works on all Devices in Responsive way. Joe: Add the link here:
+		- Flutter Best Practice Layout that works on all Devices in Responsive way. Example: https://github.com/MaikuB/master_detail_scaffold
 		- Data Storage: Hive. Add the Hive Crypto lib here.
 
 - GUI Proxy to Flutter
@@ -131,8 +160,4 @@ We had to do this to get Video and Multimedia working.
 	- So inside the gomobile layer we have to add a Proxy that can talk to the Servers.
 	- ION and go-micro clients seems to be the way to go.
 
-- go-micro i think uses QUIC and a Inlets like proxy to enable Self hosted Servers behind NAT stay safe but be addressable. We need to really check this ! I think they might be relying on CloudFlare.
 
-- ION uses Webrtc but i dont know much more right now.
-
-- If we can get through the GFC, and other naughty country firewalls then its a bonus.

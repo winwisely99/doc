@@ -28,9 +28,14 @@ GUI Layout
 https://github.com/rodydavis/navigation_rail
 - Basis for app layout that works on Web, Desktop and Mobile how we want.
 
-Code Structure for Web, Deskop ( google flutter) and Mobile
+Responsive Layout Web, Deskop ( google flutter) and Mobile
 https://github.com/rodydavis/flutter_everywhere
 - Has Windows.
+
+Responsive Master Details
+https://github.com/MaikuB/master_detail_scaffold
+- works much better than the way we do it now in main repo
+- Issue include it: https://github.com/rodydavis/navigation_rail/issues/5
 
 IOC
 https://github.com/fluttercommunity/get_it
