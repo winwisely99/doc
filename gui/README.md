@@ -2,6 +2,47 @@
 
 We are Doing our base architecture again having learnt from the MVP.
 
+Targets: FLutter Web, Flutter Desktop and Flutter Mobile.
+
+
+## Template
+The GUI Template must:
+
+
+0. Responsive
+
+- rails
+- master detail
+
+1. Printing
+
+- see plugins repo. Requires a View per screen to Print.
+
+3. Unilinks
+
+- See plugins repo for notes.
+
+4. Web routing ( can copy paste links)
+
+- main currently does this. 
+
+5. Packaging and signing
+
+- make it stupid simple.
+
+## Higher Order
+
+From the Template , then higher order apps can be built in flutter on top.
+
+Our main repo is the current Higher order.
+
+But we need to make it a clean as possible seperation of concerns.
+
+
+
+## LIB
+
+JUst a running list for our notes.
 
 DB
 https://github.com/AKushWarrior/tailor
