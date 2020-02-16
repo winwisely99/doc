@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-# WARNING: THIS FILE IS MANAGED IN THE 'BOILERPLATE' REPO AND COPIED TO OTHER REPOSITORIES.
-# ONLY EDIT THIS FILE FROM WITHIN THE 'LYFT/BOILERPLATE' REPOSITORY:
+# WARNING: THIS FILE IS MANAGED IN THE 'BOOTSTRAP' REPO AND COPIED TO OTHER REPOSITORIES.
+# ONLY EDIT THIS FILE FROM WITHIN THE 'CGN/BOILERPLATE' REPOSITORY:
 # 
-# TO OPT OUT OF UPDATES, SEE https://github.com/lyft/boilerplate/blob/master/Readme.rst
+# TO OPT OUT OF UPDATES, SEE https://github.com/getcouragenow/bootstrap/blob/master/boilerplate/README.rst
 
 set -e
 
@@ -18,7 +18,7 @@ echo ""
 
 
 CONFIG_FILE="${DIR}/update.cfg"
-README="https://github.com/lyft/boilerplate/blob/master/Readme.rst"
+README="https://github.com/getcouragenow/bootstrap/blob/master/boilerplate/README.rst"
 
 if [ ! -f "$CONFIG_FILE" ]; then
   echo "$CONFIG_FILE not found."
