@@ -1,53 +1,69 @@
 
+This is our Best Practice Architecture that meets our goals.
 
-The project is designed in 3 high level layers.
 
-1. Business GUI
+
+# Repo Structure
+
+The project is designed in layers of responsibilities.
+
+0. Bootstrap repo is the dev tools
+
+It is designed to be used by Users, Developers and Operators.
+
+It is a golang CLI with releases via github.
+
+- It does:
+	- Install any native dev dependencies cross platform to avoid regressions.
+	- Drive any packages that has DesignTime, RunTime aspecst ( e.g i18n, k8, etc).
+	- Any other tools we need to encapsulate.
+
+1. Main repo is the Business GUI
 
 - This is the applied Vertical domain for which the architecture is applied.
 
-- It uses IOC in order to use the Flutter components from the Embed layer
+- It uses IOC ( as much as possible ) in order to use the Flutter components from the Package Repo and so keep the main lean and clean.
 
-2. Embed
+
+2. Embed repo ( OUT OF SCOPE for now)
 
 - This is reusable Flutter and Golang code that is client side.
 
 - The embed repo is the golang that sits embedded behind the Flutter code. 
 
-	- It does:
+- It does:
+	- Advanced Security
+	- Advanced Storage
+	- P2P Networking
 
-		- Security
+3. Packages repo is the Flutter / Golang reusable packages
 
-		- Storage
+- It does:
 
-		- Networking
+	- MainTemplate that encapsulates the best practice things a main Flutter GUI needs
 
-- The packages repo is the Flutter
+	- Mod Packages that are GSuite functionality ( Cal, Meet, Docs, Drive, etc etc).
+	- Each Mod Package representing a MicroService is composed of Flutter and Golang.
 
-	- It does:
+	- Any other flutter things that all projects need.
 
-		- Gsuite style functionality.
+* NOTE: Plugins that require any native things are in the Plugins repo.
 
-		- i18n embedded via Flutter 
+3. Network Repo is the golang backend code.
 
-3. Backend
+- It does:
 
-This is the reusable Golang backend that supports the Embed layer.
+	- Infrastructure that each MicroService needs.
 
+## Targets
 
+Frontend:
+- Flutter Web, Flutter Desktop, Flutter Mobile
 
-This is our Best Practice Architecture that meets our goals.
+Backend:
+- Bare metal (Linux, Mac, Windows and Rasp PI)
+- K8 ( same sub targets)
 
-Packages ( See repo ) use embed and the Architecture is provides.
-
-Harness ( this repo - see Folder) is our Best practice app to show how it works and refine it.
-
-Code written in golang with Flutter.
-
-Why ?
-
-- Flutter is great at GUI. (MANY Foreground)
-- Golang is great at networking. (Singleton Background)
 
 
 ## Run as a Background Service
