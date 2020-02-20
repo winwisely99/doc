@@ -18,11 +18,11 @@ RESET  := $(shell tput -Txterm sgr0)
 
 # boilerplate
 export REPOSITORY=doc
+#include boilerplate/cgn/git/Makefile
 include boilerplate/lyft/docker_build/Makefile
 include boilerplate/lyft/golang_test_targets/Makefile
 
 # git
-
 REPO_NAME=$(notdir $(shell pwd))
 UPSTREAM_ORG=getcouragenow
 FORK_ORG=$(shell basename $(dir $(abspath $(dir $$PWD))))
@@ -35,7 +35,7 @@ VERSION ?= $(shell echo $(TAGGED_VERSION) | cut -c 2-)
 
 ## Show help
 help:
-	@echo 'Package eris provides a better way to handle errors in Go.'
+	@echo 'Provides tooling to run docs server.'
 	@echo ''
 	@echo 'Usage:'
 	@echo '  ${YELLOW}make${RESET} ${GREEN}<target>${RESET}'
@@ -69,7 +69,8 @@ print:
 boilerplate-update: 
 	# See: https://github.com/lyft/boilerplate
 	# Example: See: https://github.com/lyft/flytepropeller/tree/master/boilerplate
-	@boilerplate/update.sh
+	#@boilerplate/update.sh
+	go run boilerplate/update.go
 
 
 ### GIT-FORK
