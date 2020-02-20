@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-# WARNING: THIS FILE IS MANAGED IN THE 'BOOTSTRAP' REPO AND COPIED TO OTHER REPOSITORIES.
-# ONLY EDIT THIS FILE FROM WITHIN THE 'CGN/BOILERPLATE' REPOSITORY:
+# WARNING: THIS FILE IS MANAGED IN THE 'BOILERPLATE' REPO AND COPIED TO OTHER REPOSITORIES.
+# ONLY EDIT THIS FILE FROM WITHIN THE 'LYFT/BOILERPLATE' REPOSITORY:
 # 
-# TO OPT OUT OF UPDATES, SEE https://github.com/getcouragenow/bootstrap/blob/master/boilerplate/README.rst
+# TO OPT OUT OF UPDATES, SEE https://github.com/lyft/boilerplate/blob/master/Readme.rst
 
 set -e
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 OUT="$(mktemp -d)"
-git clone git@github.com:getcouragenow/bootstrap.git "${OUT}"
+git clone git@github.com:lyft/boilerplate.git "${OUT}"
 
 echo "Updating the update.sh script."
 cp "${OUT}/boilerplate/update.sh" "${DIR}/update.sh"
@@ -18,7 +18,7 @@ echo ""
 
 
 CONFIG_FILE="${DIR}/update.cfg"
-README="https://github.com/getcouragenow/bootstrap/blob/master/boilerplate/README.rst"
+README="https://github.com/lyft/boilerplate/blob/master/Readme.rst"
 
 if [ ! -f "$CONFIG_FILE" ]; then
   echo "$CONFIG_FILE not found."
